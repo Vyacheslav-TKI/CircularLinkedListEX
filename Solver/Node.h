@@ -5,17 +5,17 @@ namespace rut::miit::llist
 	{
 	public:
 		/**
-		* @brief значение узла.
+		* @brief Р·РЅР°С‡РµРЅРёРµ СѓР·Р»Р°.
 		*/
 		T data;
 
 		/**
-		* @brief указатель на следующий узел
+		* @brief СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СѓР·РµР»
 		*/
 		Node* next;
 
 		/**
-		* @brief конструктор
+		* @brief РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 		*/
 		Node(T value, Node* next = nullptr) : data(value), next(nullptr) {};
 	};

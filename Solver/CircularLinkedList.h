@@ -4,25 +4,25 @@ namespace rut::miit::llist
     class CircularLinkedList {
     private:
         /**
-        * @brief указатель на хвост.
+        * @brief СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С…РІРѕСЃС‚.
         */
         Node<T>* tail;
 
     public:
         /**
-        * @brief конструктор
+        * @brief РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
         */
         CircularLinkedList() : tail(nullptr) {}
 
         /**
-        * @brief проверка на наличие элементов списка
+        * @brief РїСЂРѕРІРµСЂРєР° РЅР° РЅР°Р»РёС‡РёРµ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°
         */
         bool is_empty() const {
             return tail == nullptr;
         }
 
         /**
-        * @brief заполнение списка элементами
+        * @brief Р·Р°РїРѕР»РЅРµРЅРёРµ СЃРїРёСЃРєР° СЌР»РµРјРµРЅС‚Р°РјРё
         */
         void add(const T& val) {
             Node<T>* new_node = new Node<T>(val);
@@ -40,11 +40,11 @@ namespace rut::miit::llist
         }
 
         /**
-        * @brief вывод списка на экран
+        * @brief РІС‹РІРѕРґ СЃРїРёСЃРєР° РЅР° СЌРєСЂР°РЅ
         */
         void print() const {
             if (is_empty()) {
-                throw std::out_of_range << "элементов нема";
+                throw std::out_of_range << "СЌР»РµРјРµРЅС‚РѕРІ РЅРµРјР°";
                 return;
             }
 
@@ -58,11 +58,11 @@ namespace rut::miit::llist
 
 
         /**
-        * @brief убирает первый элемент списка
+        * @brief СѓР±РёСЂР°РµС‚ РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
         */
         void remove_front() {
             if (is_empty()) {
-                throw std::out_of_range << "элементов нет";
+                throw std::out_of_range << "СЌР»РµРјРµРЅС‚РѕРІ РЅРµС‚";
                 return;
             }
 
@@ -79,7 +79,7 @@ namespace rut::miit::llist
         }
 
         /**
-        * @brief Деструктор
+        * @brief Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
         */
         ~CircularLinkedList() {
             while (!is_empty()) {
