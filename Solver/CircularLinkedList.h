@@ -24,7 +24,7 @@ namespace rut::miit::llist
         /**
         * @brief заполнение списка элементами
         */
-        void add(T val) {
+        void add(const T& val) {
             Node<T>* new_node = new Node<T>(val);
 
             if (is_empty()) {
@@ -44,7 +44,7 @@ namespace rut::miit::llist
         */
         void print() const {
             if (is_empty()) {
-                std::cout << "элементов нема" << std::endl;
+                throw std::out_of_range << "элементов нема";
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace rut::miit::llist
         */
         void remove_front() {
             if (is_empty()) {
-                std::cout << "элементов нет" << std::endl;
+                throw std::out_of_range << "элементов нет";
                 return;
             }
 
