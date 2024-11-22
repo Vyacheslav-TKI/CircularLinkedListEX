@@ -1,6 +1,5 @@
 ﻿#include "CppUnitTest.h"
-#include "../Solver/CircularLinkedList.h" // Замените на правильный путь к вашему файлу с классом CircularLinkedList
-
+#include "../Solver/CircularLinkedList.h" 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace rut::miit::llist;
 

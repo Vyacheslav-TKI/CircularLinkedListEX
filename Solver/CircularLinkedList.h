@@ -71,6 +71,21 @@ namespace rut::miit::llist
         CircularLinkedList& operator=(CircularLinkedList&& other) noexcept;
 
         /**
+        * @brief Метод вставки в конкретное место
+        */
+        void InsertIn(size_t position, const T& value);
+
+        /**
+        * @brief метод удаления из конкретного места
+        */
+        void RemoveIn(size_t position);
+
+        /**
+        * @brief проверяет, есть ли искомый элемент в массиве
+        */
+        bool FindElem(const T& elem);
+
+        /**
         * @brief Деструктор
         */
         ~CircularLinkedList();
@@ -79,17 +94,17 @@ namespace rut::miit::llist
 
 
     template <typename T>
-    inline std::wstring CircularLinkedList<T>::ToString(const CircularLinkedList& list)
+    std::wstring CircularLinkedList<T>::ToString(const CircularLinkedList& list)
     {
         auto temp = this->ToString();
-        std::wstring ws{ temp.cbegin(), temp.cend() };
-        return ws;
+        return std::wstring ws{ temp.cbegin(), temp.cend() };
     }
 
-    inline std::wstring CircularLinkedList<T>::CircularLinkedList() : tail(nullptr) {}
+    template <typename T>
+    std::wstring CircularLinkedList<T>::CircularLinkedList() : tail(nullptr) {}
 
     template <typename T>
-    inline CircularLinkedList<T>::CircularLinkedList(std::initializer_list<T> list) : CircularLinkedList()
+    CircularLinkedList<T>::CircularLinkedList(std::initializer_list<T> list) : CircularLinkedList()
     {
         for (auto& value : list)
         {
@@ -98,7 +113,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    inline CircularLinkedList<T>::CircularLinkedList(const CircularLinkedList& other) : CircularLinkedList()
+    CircularLinkedList<T>::CircularLinkedList(const CircularLinkedList& other) : CircularLinkedList()
     {
         Node* current = other.first;
         while (current != nullptr)
@@ -109,7 +124,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    inline CircularLinkedList<T>& CircularLinkedList<T>::operator=(const CircularLinkedList& other)
+    CircularLinkedList<T>& CircularLinkedList<T>::operator=(const CircularLinkedList& other)
     {
         CircularLinkedList<T> copy{ other };
         swap(copy);
@@ -117,7 +132,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    inline CircularLinkedList<T>& CircularLinkedList<T>::operator=(CircularLinkedList&& other) noexcept
+    CircularLinkedList<T>& CircularLinkedList<T>::operator=(CircularLinkedList&& other) noexcept
     {
         if (this != &other)
         {
@@ -133,7 +148,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    inline CircularLinkedList<T>::~CircularLinkedList()
+    CircularLinkedList<T>::~CircularLinkedList()
     {
         while (first != nullptr)
         {
@@ -144,13 +159,13 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    inline bool CircularLinkedList<T>::IsEmpty() const noexcept
+    bool CircularLinkedList<T>::IsEmpty() const noexcept
     {
         return first == nullptr;
     }
 
     template <typename T>
-    inline void CircularLinkedList<T>::add(const T& val) {
+    void CircularLinkedList<T>::add(const T& val) {
         Node<T>* new_node = new Node<T>(val);
 
         if (is_empty()) {
@@ -166,17 +181,68 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    inline void CircularLinkedList<T>::swap(CircularLinkedList& other) noexcept
+    void CircularLinkedList<T>::swap(CircularLinkedList& other) noexcept
     {
         std::swap(this->first, other.first);
     }
 
+
     template <typename T>
-    inline void CircularLinkedList<T>::RemoveFront() {
-        if (IsEmpty()) {
-            throw std::out_of_range("элементов нет");
+    void CircularLinkedList<T>::InsertIn(size_t position, const T& value)
+    {
+        if (position == 0 || IsEmpty()) {
+            Add(value);
             return;
         }
+    }
+
+    template <typename T>
+    void CircularLinkedList<T>::RemoveIn(size_t position)
+    {
+        if (IsEmpty())
+            throw std::out_of_range("Пустой список");
+
+        if (position == 0) {
+            RemoveFront();
+            return;
+        }
+
+        Node* current = tail->next;
+        for (size_t i = 0; i < position - 1; ++i) {
+            current = current->next;
+            if (current == tail->next) 
+                throw std::out_of_range("Список уже обработан");
+        }
+
+        Node* to_remove = current->next;
+        current->next = to_remove->next;
+
+        if (to_remove == tail) 
+            tail = current;
+
+        delete to_remove;
+    }
+
+    template <typename T>
+    bool CircularLinkedList<T>::FindElem(const T& elem)
+    {
+        if (IsEmpty()) 
+            return false;
+
+        Node* current = tail->next;
+        do {
+            if (current->value == val) 
+                return true;
+            current = current->next;
+        } while (current != tail->next);
+
+        return false;
+    }
+
+
+
+    template <typename T>
+    void CircularLinkedList<T>::RemoveFront() {
 
         Node<T>* front = tail->next;
         if (tail->next == tail) {
