@@ -5,45 +5,45 @@
 int main() {
     rut::miit::llist::CircularLinkedList<int> list;
 
-    std::cout << "Äîáàâëÿåì ıëåìåíòû 10, 20, 30 â ñïèñîê..." << std::endl;
+    std::cout << "Ğ”Ğ¾Ğ±Ğ°Ğ²Ğ»ÑĞµĞ¼ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ñ‹ 10, 20, 30 Ğ² ÑĞ¿Ğ¸ÑĞ¾Ğº..." << std::endl;
     list.Add(10);
     list.Add(20);
     list.Add(30);
 
     
-    std::wcout << L"Òåêóùèé ñïèñîê: " << list.ToString(list) << std::endl;
+    std::wcout << L"Ğ¢ĞµĞºÑƒÑ‰Ğ¸Ğ¹ ÑĞ¿Ğ¸ÑĞ¾Ğº: " << list.ToString(list) << std::endl;
 
-    std::cout << "Âñòàâëÿåì ıëåìåíò 15 íà ïîçèöèş 1..." << std::endl;
+    std::cout << "Ğ’ÑÑ‚Ğ°Ğ²Ğ»ÑĞµĞ¼ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ 15 Ğ½Ğ° Ğ¿Ğ¾Ğ·Ğ¸Ñ†Ğ¸Ñ 1..." << std::endl;
     list.InsertAt(15, 1);
-    std::wcout << L"Ñïèñîê ïîñëå âñòàâêè: " << list.ToString(list) << std::endl;
+    std::wcout << L"Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿Ğ¾ÑĞ»Ğµ Ğ²ÑÑ‚Ğ°Ğ²ĞºĞ¸: " << list.ToString(list) << std::endl;
 
     
-    std::cout << "Óäàëÿåì ıëåìåíò ñ ïîçèöèè 2..." << std::endl;
+    std::cout << "Ğ£Ğ´Ğ°Ğ»ÑĞµĞ¼ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ Ñ Ğ¿Ğ¾Ğ·Ğ¸Ñ†Ğ¸Ğ¸ 2..." << std::endl;
     list.RemoveAt(2);
-    std::wcout << L"Ñïèñîê ïîñëå óäàëåíèÿ: " << list.ToString(list) << std::endl;
+    std::wcout << L"Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿Ğ¾ÑĞ»Ğµ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ¸Ñ: " << list.ToString(list) << std::endl;
 
     
     int searchValue = 20;
-    std::cout << "Èùåì ıëåìåíò " << searchValue << " â ñïèñêå..." << std::endl;
+    std::cout << "Ğ˜Ñ‰ĞµĞ¼ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ " << searchValue << " Ğ² ÑĞ¿Ğ¸ÑĞºĞµ..." << std::endl;
     bool found = list.Find(searchValue);
     if (found) {
-        std::cout << "İëåìåíò " << searchValue << " íàéäåí." << std::endl;
+        std::cout << "Ğ­Ğ»ĞµĞ¼ĞµĞ½Ñ‚ " << searchValue << " Ğ½Ğ°Ğ¹Ğ´ĞµĞ½." << std::endl;
     }
     else {
-        std::cout << "İëåìåíò " << searchValue << " íå íàéäåí." << std::endl;
+        std::cout << "Ğ­Ğ»ĞµĞ¼ĞµĞ½Ñ‚ " << searchValue << " Ğ½Ğµ Ğ½Ğ°Ğ¹Ğ´ĞµĞ½." << std::endl;
     }
 
     
-    std::cout << "Óäàëÿåì ïåğâûé ıëåìåíò ñïèñêà..." << std::endl;
+    std::cout << "Ğ£Ğ´Ğ°Ğ»ÑĞµĞ¼ Ğ¿ĞµÑ€Ğ²Ñ‹Ğ¹ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ ÑĞ¿Ğ¸ÑĞºĞ°..." << std::endl;
     list.RemoveFront();
-    std::wcout << L"Ñïèñîê ïîñëå óäàëåíèÿ ïåğâîãî ıëåìåíòà: " << list.ToString(list) << std::endl;
+    std::wcout << L"Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿Ğ¾ÑĞ»Ğµ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ¸Ñ Ğ¿ĞµÑ€Ğ²Ğ¾Ğ³Ğ¾ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ°: " << list.ToString(list) << std::endl;
 
     
     if (list.IsEmpty()) {
-        std::cout << "Ñïèñîê ïóñò." << std::endl;
+        std::cout << "Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿ÑƒÑÑ‚." << std::endl;
     }
     else {
-        std::cout << "Ñïèñîê íå ïóñò." << std::endl;
+        std::cout << "Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ½Ğµ Ğ¿ÑƒÑÑ‚." << std::endl;
     }
 
     return 0;

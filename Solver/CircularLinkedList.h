@@ -53,7 +53,7 @@ namespace rut::miit::llist
         /**
         * @brief заполнение списка элементами
         */
-        void add(const T& val);
+        void Add(const T& val);
 
         /**
         * @brief убирает первый элемент списка
@@ -101,7 +101,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    std::wstring CircularLinkedList<T>::CircularLinkedList() : tail(nullptr) {}
+    CircularLinkedList<T>::CircularLinkedList() : tail(nullptr) {}
 
     template <typename T>
     CircularLinkedList<T>::CircularLinkedList(std::initializer_list<T> list) : CircularLinkedList()
@@ -211,7 +211,7 @@ namespace rut::miit::llist
         for (size_t i = 0; i < position - 1; ++i) {
             current = current->next;
             if (current == tail->next) 
-                throw std::out_of_range("Список уже обработан");
+                throw std::out_of_range("Невозможно удалить элемент на этой позиции, так как позиция выходит за границы списка");
         }
 
         Node* to_remove = current->next;
@@ -238,8 +238,6 @@ namespace rut::miit::llist
 
         return false;
     }
-
-
 
     template <typename T>
     void CircularLinkedList<T>::RemoveFront() {
