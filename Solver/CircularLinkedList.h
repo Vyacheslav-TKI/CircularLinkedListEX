@@ -31,17 +31,20 @@ namespace rut::miit::llist
         CircularLinkedList();
 
         /**
-        * @brief конструктор с помощбю шаблона
+        * @brief конструктор с помощью шаблона
+        * @param list список с типом данных шаблона
         */
         CircularLinkedList(std::initializer_list<T> list);
 
         /**
         * @brief конструктор перемещения
+        * @param other ссылка rvalue
         */
         CircularLinkedList(CircularLinkedList&& other) noexcept;
 
         /**
         * @brief конструктор копирования
+        * @param other ссылка на объект
         */
         CircularLinkedList(const CircularLinkedList& other);
 
@@ -52,6 +55,7 @@ namespace rut::miit::llist
 
         /**
         * @brief заполнение списка элементами
+        * @param val вводимое значение
         */
         void Add(const T& val);
 
@@ -62,28 +66,34 @@ namespace rut::miit::llist
 
         /**
         * @brief оператор копирования
+        * @param other ссылка на объект
         */
         CircularLinkedList& operator=(const CircularLinkedList& other);
 
         /**
         * @brief оператор перемещения
+        * @param other ссылка rvalue
         */
         CircularLinkedList& operator=(CircularLinkedList&& other) noexcept;
 
         /**
         * @brief Метод вставки в конкретное место
+        * @param position позиция вводимого значения
+        * @param value вводимое значение
         */
         void InsertIn(size_t position, const T& value);
 
         /**
         * @brief метод удаления из конкретного места
+        * @param position позиция
         */
         void RemoveIn(size_t position);
 
         /**
         * @brief проверяет, есть ли искомый элемент в массиве
+        * @param elem искомый элемент
         */
-        bool FindElem(const T& elem);
+        bool Contains(const T& elem);
 
         /**
         * @brief Деструктор
@@ -136,9 +146,9 @@ namespace rut::miit::llist
     {
         if (this != &other)
         {
-            this->first = other.first;
-            this->last = other.last;
-            this->size = other.size;
+            swap(other.first);
+            swap(other.last);
+            swap(other.size);
 
             other.first = nullptr;
             other.last = nullptr;
@@ -165,7 +175,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    void CircularLinkedList<T>::add(const T& val) {
+    void CircularLinkedList<T>::Add(const T& val) {
         Node<T>* new_node = new Node<T>(val);
 
         if (is_empty()) {
@@ -194,6 +204,28 @@ namespace rut::miit::llist
             Add(value);
             return;
         }
+
+        Node* current = first;
+        size_t it = 0;
+
+        
+        while (it < position - 1 && current->next != first) {
+            current = current->next;
+            ++it;
+        }
+
+        
+        Node* NewNode = new Node(value);
+        newNode->next = current->next;
+        current->next = NewNode;
+
+        
+        if (current == last) {
+            last = NewNode;
+        }
+
+        ++size; 
+    }
     }
 
     template <typename T>
@@ -224,7 +256,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    bool CircularLinkedList<T>::FindElem(const T& elem)
+    bool CircularLinkedList<T>::Contains(const T& elem)
     {
         if (IsEmpty()) 
             return false;
