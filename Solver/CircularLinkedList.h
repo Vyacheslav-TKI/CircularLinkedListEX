@@ -17,7 +17,7 @@ namespace rut::miit::llist
         * @brief операция обмена содержимыми
         * @param other обмениваемый список
         */
-        void swap(CircularLinkedList& other) noexcept;
+        void Swap(CircularLinkedList& other) noexcept;
 
         /**
         * @brief указатель на хвост.
@@ -191,7 +191,7 @@ namespace rut::miit::llist
     }
 
     template <typename T>
-    void CircularLinkedList<T>::swap(CircularLinkedList& other) noexcept
+    void CircularLinkedList<T>::Swap(CircularLinkedList& other) noexcept
     {
         std::swap(this->first, other.first);
     }
